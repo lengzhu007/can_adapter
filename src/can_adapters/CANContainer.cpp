@@ -28,7 +28,6 @@ bool stop_can()
 
 ServiceHandler *service_handler = NULL;
 
-
 bool init_can()
 {
 	bool flag;
@@ -77,12 +76,11 @@ bool init_can()
 		service_handler->ServiceHandlerTimeStampSyncMon(); //跟mcu通讯
 		service_handler->ServiceHandlerKeepAliveMon();
 		service_handler->ServiceHandlerMcuVerMon();
-		
 	}
-	
-	
+
 	delete service_handler;
-	if(flag) return true;
+	if (flag)
+		return true;
 	return false;
 }
 void send_messages(const vector<CanBase> &send_buff, int can_number)
@@ -94,19 +92,28 @@ void send_messages(const vector<CanBase> &send_buff, int can_number)
 	if (send_buff.size() == 0)
 		return;
 	int n = send_buff.size() < MAX_LENGTH ? send_buff.size() : MAX_LENGTH;
-	OutputCAN *outputcan = new OutputCAN();
+	std::cout << "n = " << n << std::endl;
+	OutputCAN *outputcan = new OutputCAN(n);//给vector 初始化大小
+	
 	for (int i = 0; i < n; ++i)
 	{
+		
 		(*outputcan)[i].can_id = send_buff[i].get_id();
+		
 		(*outputcan)[i].can_dlc = 8;
-
+	
 		for (int j = 0; j < 8; ++j)
 			(*outputcan)[i].data[j] = 0; //清零
-
+		
 		const BYTE *send_bytes = send_buff[i].get_bytes();
+		
 		for (int j = 0; j < 8; ++j)
+		{
+		
 			(*outputcan)[i].data[j] = send_bytes[j];
+		}
 	}
+	
 	send_can_spi(outputcan); //调用spi 封装好的程序　将can信息发出去　
 	delete outputcan;
 }
@@ -120,8 +127,8 @@ void recv_messages(vector<CanBase> &recv_buff, int can_number)
 	//  ServiceHandler service_handler;
 	// recv_can_spi(spi_can_frame, service_handler); //调用函数 调用spi_can_frame return spi_can_frame
 	recv_can_spi(spi_can_frame
-	            // , *service_handler
-	              ); //调用函数 调用spi_can_frame return spi_can_frame
+				 // , *service_handler
+	); //调用函数 调用spi_can_frame return spi_can_frame
 	// int recv_can_spi(SpiCanFrameType & spi_can_frame,ServiceHandler &service_handler)
 	//recv_can_spi --> recv_message --> CANTrans::recv_callback -->CANTrans::start   CANTrans::start -->　init_can() 有　ServiceHandler
 	int n = spi_can_frame.can_frame_.size();

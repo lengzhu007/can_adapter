@@ -76,7 +76,7 @@ bool brake_light_status ;
 typedef struct Control//需要重新定义　trajecttory and odometry 包含以下结构体
 {
 float header;
-
+////////////////////////应该不需要了　
 double throttle;
 double steer_target;
 double steer_rate;
@@ -93,7 +93,11 @@ bool uphill_signal;
 bool emergency_signal;
 double speed;
 double steer_ref;
-
+/////////////////////////////
+double Orentation_Roll; //Vehicle_3D_Odometry:
+double Position_Z;
+double Orentation_Pitch;
+double Odometry_Counter;
 
 // typedef unsigned int vbittype;
   // typedef struct _Trajectory_Start //id = 256　　　10hz

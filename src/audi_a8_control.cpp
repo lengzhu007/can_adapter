@@ -64,7 +64,11 @@ void AudiA8Control::run() {
 			//ros::spinOnce()，两者区别在于前者调用后不会再返回，也就是你的主程序到这儿就不往下执行了，
 			//而后者在调用后还可以继续执行之后的程序。
 			// if (recv_control.brake != 0) car_control_callback(recv_control);//只要收到control的指令　就调用car_control_callback
+			recv_control.Orentation_Roll =5 ;
+			car_control_callback(recv_control);//将recv_control　的控制指令给到　_control_msg　．
 			// if (gps_time )//只要收到control的指令　就调用car_control_callback
+			//　收到control信息，调用car_control_callback，将control 信息　传给　_control_msg　．然后
+
 			++_control_watch;//car_control_callback 中归零
 		
 			if (_control_watch > 1000) {
@@ -121,6 +125,9 @@ void AudiA8Control::run() {
 			}
 
 			// std::cout << "300   "  <<std::endl;
+
+
+			/*/////////////////////////////////////////////////////////////////
 			if (_msgs_processor.got_all_messages()) {//没看懂？？？？？？？？？？？
 				if (_autodrive_status == 0) {
 					// if (_msgs_processor.get_wheel_button() == 5) {
@@ -188,18 +195,23 @@ void AudiA8Control::run() {
 				// initializing
 				// do nothing
 			}
-
+           */////////////////////////////////////////////////////////////
 			// std::cout << "320   "  <<std::endl;
-			// _last_control_msg = _control_msg;
+			_last_control_msg = _control_msg;
+			// _last_control_msg.Orentation_Roll = 5;
+			// cout << "_last_control_msg "<< _last_control_msg.Orentation_Roll << endl;
 			if (_canTrans.has_sent(0)) {
-				_send_cans[0] = _msgs_processor.process_send(_last_control_msg);
-				_canTrans.append_can_bases(_send_cans[0], 0);
+				_send_cans[0] = _msgs_processor.process_send(_last_control_msg);//
+				// cout << "_send_cans[0].size " <<_send_cans[0].size() << endl;
+				//通过_last_control_msg 组成　can 形式的报文 放到　_send_msgs 里
+				_canTrans.append_can_bases(_send_cans[0], 0);//将_send_cans 里的　新的报文　放到　_new_send_buff
+				//_new_send_buff  通过调用子进程　实现发送
 				
 				if (_send_cans[0].size() > 0) {
 					string sendS = getStrings(_send_cans[0]);
 					string sendSMsg;
 					sendSMsg = sendS;//将组合好的信息放到sendSMsg 
-
+					cout << "/can/send[0] = " << sendSMsg <<endl;//将发送的原始报文打印出来
             
 					// _pub_can_send.publish(sendSMsg);
 					if (IGNORE_MANUAL_EXIT && _autodrive_status == 0 && _manual_exit) _manual_exit = false;

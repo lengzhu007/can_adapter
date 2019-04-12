@@ -67,6 +67,7 @@ AudiA8MsgsProcessor::AudiA8MsgsProcessor()
     // for (auto &i : unitPaths)
     //     i = basePath + "/" + i;
      dbcPaths.push_back("/userdata/maji/parameters/Flexray_CAN.dbc");
+     dbcPaths.push_back("/userdata/maji/parameters/trajectory_draft.dbc");
      keyPaths.push_back("/userdata/maji/parameters/key.map");
      unitPaths.push_back("/userdata/maji/parameters/unit.map");
     _canTranslator.appendDbcFiles(dbcPaths);
@@ -83,11 +84,14 @@ AudiA8MsgsProcessor::~AudiA8MsgsProcessor()
 
 const vector<can_adapter::CanBase> &AudiA8MsgsProcessor::process_send(const struct Control &msg)
 {
-    // if (msg.Orentation_Roll > 0)
-    // _canTranslator.SetKey(_send_msgs, "send_Orentation_Roll", Orentation_Roll);
-    // _canTranslator.SetKey(_send_msgs, "send_Position_Z", Position_Z);
-    // _canTranslator.SetKey(_send_msgs, "send_Orentation_Pitch", Orentation_Pitch);
-    // _canTranslator.SetKey(_send_msgs, "send_Odometry_Counter", Odometry_Counter);
+     if (msg.Orentation_Roll > 0)
+    //  cout << "msg.Orentation_Roll " <<msg.Orentation_Roll << endl;
+     _canTranslator.SetKey(_send_msgs, "send_Orentation_Roll", msg.Orentation_Roll);//(发送物理值)
+     _canTranslator.SetKey(_send_msgs, "send_Position_Z", 3);
+     _canTranslator.SetKey(_send_msgs, "send_Orentation_Pitch", 100);
+    _canTranslator.SetKey(_send_msgs, "send_Odometry_Counter", 10);
+
+    // cout << "m_send_msgs[0].get_data(0,8)  " << _send_msgs[0] << endl;
 
 //发送的信息爆炸　如果一个一个信号的设置　　50个点的坐标　/////////////////////////////////////　
 //是否改为　组包设置报文内容　 canb报文的组包  需要加入报文ＩＤ信息
