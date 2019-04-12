@@ -8,59 +8,64 @@
 
 #define ADAS_FPGA
 #define ADAS_ALTERA
-int recv_can_spi(SpiCanFrameType & spi_can_frame)
+int recv_can_spi(SpiCanFrameType & spi_can_frame
+                //  , ServiceHandler &service_handler
+                 )//可以传进来么??????
 {
 #if defined(ADAS_FPGA) && defined(ADAS_ALTERA)
 
   ServiceHandler *service_handler = new ServiceHandler();
-  service_handler->Init();
-  service_handler->CANFilterVersionRequest();
+    service_handler->RegisterServiceRecieve(MSG_CAN_DATA,
+    &ServiceHandler::ServiceHandlerCANDataRecieve);
+  service_handler->RegisterServiceRecieve(MSG_RES_S_READ_DATA,
+    &ServiceHandler::ServiceHandlerResSReadData);
+  // service_handler->Init();
+  // service_handler->CANFilterVersionRequest();
 
-  ///////////////////////////////////////////////////////////////////////////////
-  //给canFilterCfg赋值　　并调用SetCANFilterConfig()函数  
-  canFltCfgType canFilterCfg;
-  canFilterCfg.ctrlPare.throut = 1 << CAN_MASK_CAN0;
-  canFilterCfg.ctrlPare.rvseThrout =
-      0xFF & (~canFilterCfg.ctrlPare.throut); 
+  // ///////////////////////////////////////////////////////////////////////////////
+  // //给canFilterCfg赋值　　并调用SetCANFilterConfig()函数  
+  // canFltCfgType canFilterCfg;
+  // canFilterCfg.ctrlPare.throut = 1 << CAN_MASK_CAN0;
+  // canFilterCfg.ctrlPare.rvseThrout =
+  //     0xFF & (~canFilterCfg.ctrlPare.throut); 
 
-  static char CAN_FILTER_THROUGHOUT[8] = {'t', 'h', 'r', 'g', 'h', 'o', 'u', 't'};
-  memcpy(canFilterCfg.canFltVer, CAN_FILTER_THROUGHOUT, 8);
-  service_handler->SetCANFilterConfig(&canFilterCfg);  
-  ////////////////////////////////////////////////////////////////////////////////
+  // static char CAN_FILTER_THROUGHOUT[8] = {'t', 'h', 'r', 'g', 'h', 'o', 'u', 't'};
+  // memcpy(canFilterCfg.canFltVer, CAN_FILTER_THROUGHOUT, 8);
+  // service_handler->SetCANFilterConfig(&canFilterCfg);  
+  // ////////////////////////////////////////////////////////////////////////////////
 
-  service_handler->ServiceHandlerSetOpMode(CAN_OP_ON);
-  bool spi_init_inform_ = service_handler->get_spi_init_inform_();
-  int service_spi_state_ = service_handler->get_service_spi_state_();
-  int service_slave_spi_state_ = service_handler->get_service_slave_spi_state_();
-  int service_com_state_ = service_handler->get_service_com_state_();
-  int service_com_init_step_ = service_handler->get_service_com_init_step_();
-  int ts_start = GetTimeStamp();
+  // service_handler->ServiceHandlerSetOpMode(CAN_OP_ON);
+  // bool spi_init_inform_ = service_handler->get_spi_init_inform_();
+  // int service_spi_state_ = service_handler->get_service_spi_state_();
+  // int service_slave_spi_state_ = service_handler->get_service_slave_spi_state_();
+  // int service_com_state_ = service_handler->get_service_com_state_();
+  // int service_com_init_step_ = service_handler->get_service_com_init_step_();
+  // int ts_start = GetTimeStamp();
 
 
 
-  if (service_spi_state_ == service_handler->SERVICE_SPI_STATE_INIT)
-  {
+  // if (service_spi_state_ == service_handler->SERVICE_SPI_STATE_INIT)
+  // {
    
-    if (spi_init_inform_ == true)
-    {     
-      ServiceMsg *svc_msg = new ServiceMsg();      
-      svc_msg->type_ = SPI_INIT;
-      svc_msg->length_ = 0;
-      spi_init_inform_ = false;
-    }
-    else
-    {
-    }
+  //   if (spi_init_inform_ == true)
+  //   {     
+  //     ServiceMsg *svc_msg = new ServiceMsg();      
+  //     svc_msg->type_ = SPI_INIT;
+  //     svc_msg->length_ = 0;
+  //     spi_init_inform_ = false;
+  //   }
+  //   else
+  //   {
+  //   }
     
-    service_handler->ServiceHandlerTimeStampSyncMon(); //跟mcu通讯
-    service_handler->ServiceHandlerKeepAliveMon();
-    service_handler->ServiceHandlerMcuVerMon();
+  //   service_handler->ServiceHandlerTimeStampSyncMon(); //跟mcu通讯
+  //   service_handler->ServiceHandlerKeepAliveMon();
+  //   service_handler->ServiceHandlerMcuVerMon();
 
     int recv_size = 0;
     ServiceHandler::msgGeneralType msg_general_rx;
-    int loop_cnt = 0;    
-    do
-    {
+  
+   
       int output_slot = service_handler->OUTPUT_SLOT_NONE;
       recv_size = spi_dbus_recv_frame(
           reinterpret_cast<char *>(&msg_general_rx), MSG_SVCHDL_MAX_SIZE); //&msg_general_rx  转换为指针
@@ -102,12 +107,13 @@ int recv_can_spi(SpiCanFrameType & spi_can_frame)
          
         }
       }
+           delete svc_msg;
       }
-      loop_cnt++;
-    } while (1);
-  }
+   
+   
+  
 #endif
-
+delete service_handler;
   return 0;
 }
 

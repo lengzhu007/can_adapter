@@ -355,14 +355,14 @@ error:
     return -1;
 }
 
-
-float GetTimeStamp()//
+double GetTimeStamp()//
 {
-float timestamp;
+double timestamp;
 struct timeval tv;
 gettimeofday(&tv,NULL); //gettimeofday(&start,&tz);结果一样
-timestamp = tv.tv_sec+tv.tv_usec/1000000;
+timestamp = double(tv.tv_sec)+double(tv.tv_usec)/1000000;
 return timestamp;
 }
+
 
 

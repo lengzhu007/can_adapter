@@ -48,7 +48,7 @@ static char MCU_VERSION_FILE[64] = "/tmp/mcu_version";
 
 
  ServiceHandler::ServiceHandler() {}
-
+ServiceHandler::~ServiceHandler() {}
 
 // int ServiceHandler::ADASModuleInit(hobot::RunContext * context) {//????????????????
 //   VLOG(0) << "ServiceHandler init";
@@ -57,7 +57,7 @@ static char MCU_VERSION_FILE[64] = "/tmp/mcu_version";
 //   return ADAS_OK;
 // }
 
-int ServiceHandler::Init() {
+bool ServiceHandler::Init() {
 // #if defined(ADAS_FPGA) && defined(ADAS_ALTERA)
   int spi_state = 0;
   spi_init_inform_ = false;
@@ -110,7 +110,7 @@ int ServiceHandler::Init() {
   RegisterServiceRecieve(MSG_RES_S_READ_DATA,
     &ServiceHandler::ServiceHandlerResSReadData);
 // #endif
-  return 0;
+  return true;
 }
 
 void ServiceHandler::Reset() {

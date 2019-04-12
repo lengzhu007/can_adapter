@@ -36,8 +36,8 @@ private:
 	int _send_period[2], _recv_period[2];
 	vector<CanBase> *_send_buff[2], *_new_send_buff[2];
 	vector<CanBase> *_recv_buff[2], *_new_recv_buff[2];
-	pthread_t _send_thread, _recv_thread;
-	pthread_mutex_t _send_mutex[2], _recv_mutex[2];
+	pthread_t _send_thread, _recv_thread;//声明线程ID
+	pthread_mutex_t _send_mutex[2], _recv_mutex[2];//互斥变量
 	bool _initialized, _stop;
 };
 

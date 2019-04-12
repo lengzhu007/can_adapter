@@ -14,7 +14,7 @@ int send_can_spi(OutputCAN * outputcan)
 {
   //发送给控制模块的信息定义　Trajectory＆Odometry
   // typedef unsigned int vbittype;
-  // typedef struct _Trajectory_Start //id = 256
+  // typedef struct _Trajectory_Start //id = 256　　　10hz
   // {
   //   vbittype Trajectory_version : 8;
   //   vbittype Points_Number : 8;
@@ -43,7 +43,7 @@ int send_can_spi(OutputCAN * outputcan)
   //   vbittype Trajectory_Counter : 4;
   // } _Trajectory_End;
 
-  // typedef struct _Vehicle_2D_Odometry //id=458
+  // typedef struct _Vehicle_2D_Odometry //id=458  50hz
   // {
   //   vbittype Position_X : 18; //
   //   vbittype Position_Y : 18;
@@ -62,27 +62,27 @@ int send_can_spi(OutputCAN * outputcan)
   // } _Vehicle_3D_Odometry;
 
 
- ServiceHandler *service_handler = new ServiceHandler();
- service_handler->Init();
- service_handler->ServiceHandlerSetOpMode(CAN_OP_ON);//可以去掉
+//  ServiceHandler *service_handler = new ServiceHandler();
+//  service_handler->Init();
+//  service_handler->ServiceHandlerSetOpMode(CAN_OP_ON);//可以去掉 
 ///////////////////////////////////////////////////////////////////////////
   char *frame = NULL;
   int frame_len = 0;
   headerType *header = NULL;
   int spi_frame_size = sizeof(headerType) + 1;
   std::vector<char> spi_frame(spi_frame_size, 0);
+// init 中已包含初始化
+  // int status = spi_dbus_init(5000000, 0);
+  // if (status < 0)
+  // {
+  //   std::cout << " spi device init fail" << std::endl;
+  // }
 
-  int status = spi_dbus_init(5000000, 0);
-  if (status < 0)
-  {
-    std::cout << " spi device init fail" << std::endl;
-  }
-
-  status = spi_slave_dbus_init(0);
-  if (status < 0)
-  {
-    std::cout << " spi device slave init fail" << std::endl;
-  }
+  // status = spi_slave_dbus_init(0);
+  // if (status < 0)
+  // {
+  //   std::cout << " spi device slave init fail" << std::endl;
+  // }
   /*enable MCU CAN */
   spi_frame.resize(1 + sizeof(headerType));
   header = reinterpret_cast<headerType *>(spi_frame.data());
@@ -168,15 +168,13 @@ type length
     frame_len = static_cast<int>(spi_frame2.size());
     std::cout << "can_frame = " << sizeof(struct can_frame) << "   frame_len = " << frame_len << std::endl; //1
 
-    do
-    {
+   
       int ret = spi_slave_dbus_send_frame(frame, frame_len);
       if (ret < 0)
       {
         std::cout << "send can fail " << std::endl;
-      }
-      usleep(20000);
-    } while (1);
+      }     
+    
   }
   // delete outputcan;
   return 0;

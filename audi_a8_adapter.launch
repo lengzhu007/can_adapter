@@ -1,9 +1,0 @@
-<?xml version="1.4"?>
-
-<launch>
-<!-- <param name="/control/steer_offset" type="double" value="4.0" /> -->
-<rosparam command="load" file="$(find audi_a8_can)/parameters/audi_a8_can_params.yaml" />
-
-<node name="audi_a8_adapter" pkg="audi_a8_can" type="audi_a8_adapter" output="screen"/>
-
-</launch>

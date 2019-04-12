@@ -8,11 +8,12 @@
 *
 ********************************************************/
 #include "audi_a8_msgs_processor.h"
-#include <autodrive_msgs/VehicleStatus.h>
-#include <autodrive_msgs/CANbrief.h>
-#include <ros/ros.h>
-#include <ros/package.h>
+// #include <autodrive_msgs/VehicleStatus.h>
+// #include <autodrive_msgs/CANbrief.h>
+// #include <ros/ros.h>
+// #include <ros/package.h>
 #include <iostream>
+#include "spi_dbus_hal.h"
 using namespace std;
 using namespace can_adapter;
 
@@ -31,40 +32,43 @@ const unsigned BRAKE_LIGHT_MASK = 1 << 6;
 const unsigned LOW_BEAM_MASK = 1 << 7;
 const unsigned HIGH_BEAM_MASK = 1 << 8;
 
-const double AUDI_A8_MAX_STEER_ANGLE = 500.0;
-const double AUDI_A8_STEER_ANGLE_FACTOR = double(0x8000) / 1005.0;
-const double AUDI_A8_STEER_ANGLE_OFFSET = double(0x4000);
-const double AUDI_A8_THROTTLE_BRAKE_FACTOR = double(0x8000) / 2.01;
-const double AUDI_A8_THROTTLE_BRAKE_OFFSET = double(0x4000);
+// const double AUDI_A8_MAX_STEER_ANGLE = 500.0;
+// const double AUDI_A8_STEER_ANGLE_FACTOR = double(0x8000) / 1005.0;
+// const double AUDI_A8_STEER_ANGLE_OFFSET = double(0x4000);
+// const double AUDI_A8_THROTTLE_BRAKE_FACTOR = double(0x8000) / 2.01;
+// const double AUDI_A8_THROTTLE_BRAKE_OFFSET = double(0x4000);
 AudiA8MsgsProcessor::AudiA8MsgsProcessor()
 {
     _watch_dog = 0;
     _counter = 0;
-    ros::NodeHandle nh;
+    // ros::NodeHandle nh;
 
     vector<string> dbcPaths, keyPaths, unitPaths;
-    string basePath = ros::package::getPath("control");
-    if (!nh.getParam("dbc_files", dbcPaths))
-    {
-        cout << "DBCCheryProcessor error: No dbc files" << endl;
-        return;
-    }
-    if (!nh.getParam("key_files", keyPaths))
-    {
-        cout << "DBCCheryProcessor error: No key files" << endl;
-        return;
-    }
-    if (!nh.getParam("unit_files", unitPaths))
-    {
-        cout << "DBCCheryProcessor error: No unit files" << endl;
-        return;
-    }
-    for (auto &i : dbcPaths)
-        i = basePath + "/" + i;
-    for (auto &i : keyPaths)
-        i = basePath + "/" + i;
-    for (auto &i : unitPaths)
-        i = basePath + "/" + i;
+    // string basePath = ros::package::getPath("control");
+    // if (!nh.getParam("dbc_files", dbcPaths))
+    // {
+    //     cout << "DBCCheryProcessor error: No dbc files" << endl;
+    //     return;
+    // }
+    // if (!nh.getParam("key_files", keyPaths))
+    // {
+    //     cout << "DBCCheryProcessor error: No key files" << endl;
+    //     return;
+    // }
+    // if (!nh.getParam("unit_files", unitPaths))
+    // {
+    //     cout << "DBCCheryProcessor error: No unit files" << endl;
+    //     return;
+    // }
+    // for (auto &i : dbcPaths)//i用来遍历dbcPath中的每一个元素
+    //     i = basePath + "/" + i;
+    // for (auto &i : keyPaths)
+    //     i = basePath + "/" + i;
+    // for (auto &i : unitPaths)
+    //     i = basePath + "/" + i;
+     dbcPaths.push_back("/userdata/maji/parameters/Flexray_CAN.dbc");
+     keyPaths.push_back("/userdata/maji/parameters/key.map");
+     unitPaths.push_back("/userdata/maji/parameters/unit.map");
     _canTranslator.appendDbcFiles(dbcPaths);
     _canTranslator.appendKeyFiles(keyPaths);
     _canTranslator.appendUnitFiles(unitPaths);
@@ -77,16 +81,20 @@ AudiA8MsgsProcessor::~AudiA8MsgsProcessor()
 {
 }
 
-const vector<can_adapter::CanBase> &AudiA8MsgsProcessor::process_send(const autodrive_msgs::Control &msg)
+const vector<can_adapter::CanBase> &AudiA8MsgsProcessor::process_send(const struct Control &msg)
 {
-    if (msg.Orentation_Roll > 0)
-        _canTranslator.SetKey(_send_msgs, "send_Orentation_Roll", Orentation_Roll);
-    _canTranslator.SetKey(_send_msgs, "send_Position_Z", Position_Z);
-    _canTranslator.SetKey(_send_msgs, "send_Orentation_Pitch", Orentation_Pitch);
-    _canTranslator.SetKey(_send_msgs, "send_Odometry_Counter", Odometry_Counter);
+    // if (msg.Orentation_Roll > 0)
+    // _canTranslator.SetKey(_send_msgs, "send_Orentation_Roll", Orentation_Roll);
+    // _canTranslator.SetKey(_send_msgs, "send_Position_Z", Position_Z);
+    // _canTranslator.SetKey(_send_msgs, "send_Orentation_Pitch", Orentation_Pitch);
+    // _canTranslator.SetKey(_send_msgs, "send_Odometry_Counter", Odometry_Counter);
 
-//发送的信息爆炸　　50个点的坐标　/////////////////////////////////////
-
+//发送的信息爆炸　如果一个一个信号的设置　　50个点的坐标　/////////////////////////////////////　
+//是否改为　组包设置报文内容　 canb报文的组包  需要加入报文ＩＤ信息
+    // for (int i = 0; i < 50 ; i++)
+    // {
+    //     _canTranslator.SetKey(_send_msgs, "send_Position_Y", Position_Y);
+    // }
     // set other keys
     if (AUDI_A8_DEBUG)
     {
@@ -98,7 +106,7 @@ const vector<can_adapter::CanBase> &AudiA8MsgsProcessor::process_send(const auto
     return _send_msgs;
 }
 
-void AudiA8MsgsProcessor::process_recv(autodrive_msgs::CANbrief &can_brief, autodrive_msgs::VehicleStatus &vehicleStatus, const vector<can_adapter::CanBase> &canBases)
+void AudiA8MsgsProcessor::process_recv(struct CANbrief &can_brief, struct VehicleStatus &vehicleStatus, const vector<can_adapter::CanBase> &canBases)
 {
     //can_brief.light_status = 0;
     can_brief.driving_mode = _in_auto;
@@ -123,13 +131,13 @@ void AudiA8MsgsProcessor::process_recv(autodrive_msgs::CANbrief &can_brief, auto
         if (!i.get_remote_flag() && !i.get_extern_flag())
             newCanBases.push_back(i);
     process_recv_base(vehicleStatus, newCanBases);
-    can_brief.header.stamp = ros::Time::now();
-    can_brief.header.frame_id = "/vehicle/CANbrief";
+    can_brief.header = GetTimeStamp();
+    // can_brief.header.frame_id = "/vehicle/CANbrief";
 
     _watch_dog = newCanBases.size() > 0 ? 0 : _watch_dog + 1;
     if (_watch_dog > 50)
     {
-        ROS_ERROR("Vehicle Status Error: can not receive CAN data from can");
+        std::cout <<"Vehicle Status Error: can not receive CAN data from can" << std::endl;
         _watch_dog = 0;
     }
 
@@ -186,7 +194,7 @@ void AudiA8MsgsProcessor::process_recv(autodrive_msgs::CANbrief &can_brief, auto
 
 }
 
-void AudiA8MsgsProcessor::process_recv_base(autodrive_msgs::VehicleStatus &vehicleStatus, const vector<CanBase> &canBases)
+void AudiA8MsgsProcessor::process_recv_base(struct VehicleStatus &vehicleStatus, const vector<CanBase> &canBases)
 {
     if (AUDI_A8_DEBUG)
     {
@@ -195,11 +203,11 @@ void AudiA8MsgsProcessor::process_recv_base(autodrive_msgs::VehicleStatus &vehic
             i.print();
         cout << "-----------------------" << endl;
     }
-    for (auto &i : canBases)
+    for (auto &i : canBases)//将canBase的每一个元素　的id 放入＿receive中
         if (_received.find(i.get_id()) == _received.end())
-            _received.insert(i.get_id());
-    vehicleStatus.header.stamp = ros::Time::now();
-    vehicleStatus.header.frame_id = "/map";
+            _received.insert(i.get_id());//
+    vehicleStatus.header = GetTimeStamp();
+    // vehicleStatus.header.frame_id = "/map";
 }
 
 void AudiA8MsgsProcessor::enter_autodrive_mode()
@@ -224,7 +232,7 @@ void AudiA8MsgsProcessor::left_autodrive_mode()
 bool AudiA8MsgsProcessor::got_all_messages() const
 {
     // return true;
-    return _received.find(784) != _received.end();
+    return _received.find(1793) != _received.end();//需要接受的报文id 的最大值　
 }
 
 bool AudiA8MsgsProcessor::all_in_autodrive() const

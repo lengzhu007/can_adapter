@@ -176,7 +176,8 @@ class ServiceHandler
   ~ServiceHandler();
 
   //int ADASModuleInit(hobot::RunContext *contex);// override;
-  int Init();
+  bool Init();
+  // bool RegisterFun();
   void Reset();
   virtual void Fini();
   
@@ -190,21 +191,30 @@ class ServiceHandler
  int ServiceHandlerRecvParse(msgGeneralType * data, ServiceMsg * svc_msg);
  int ServiceHandlerSetOpMode(uint8_t state);
 
+
  bool get_spi_init_inform_() const {return spi_init_inform_;}
  int get_service_spi_state_()const {return service_spi_state_;}
  int get_service_slave_spi_state_() const {return service_slave_spi_state_;}
  int get_service_com_state_() const {return service_com_state_;}
  int get_service_com_init_step_() const {return service_com_init_step_;}
- private:
-  void ServiceHandlerSpiComCheck(void);
-  bool RegisterServiceRecieve(int index, svcFunc func);
 
-  int ServiceHandlerComInitRes(msgGeneralType * data,
-     ServiceMsg * svc_msg);
-  int ServiceHandlerCANDataRecieve(msgGeneralType * data,
+// std::map<int, svcFunc> service_recieve_map_;
+bool RegisterServiceRecieve(int index, svcFunc func);
+ int ServiceHandlerCANDataRecieve(msgGeneralType * data,
     ServiceMsg * svc_msg);
   int ServiceHandlerResSReadData(msgGeneralType * data,
     ServiceMsg * svc_msg);
+ private:
+  void ServiceHandlerSpiComCheck(void);
+  // bool RegisterServiceRecieve(int index, svcFunc func);
+
+
+  int ServiceHandlerComInitRes(msgGeneralType * data,
+     ServiceMsg * svc_msg);
+  // int ServiceHandlerCANDataRecieve(msgGeneralType * data,
+  //   ServiceMsg * svc_msg);
+  // int ServiceHandlerResSReadData(msgGeneralType * data,
+  //   ServiceMsg * svc_msg);
   int ServiceHandlerKeepAlive(uint8_t state);
   
   int ServiceHandlerComInit(void);

@@ -1,0 +1,482 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: ADCU
+VAL_TABLE_ VT_Sig_Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+
+
+BO_ 459 Vehicle_3D_Odometry: 8 ADCU
+ SG_ Odometry_Counter : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ Orentation_Pitch : 16|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Position_Z : 32|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Roll : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+
+BO_ 458 Vehicle_2D_Odometry: 8 ADCU
+ SG_ Odometry_Counter : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ Position_X : 0|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 36|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Position_Y : 18|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+
+BO_ 457 Trajectory_End: 8 ADCU
+ SG_ Points_Number : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Trajectory_version : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Trajectory_Counter : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 256 Trajectory_Start: 8 ADCU
+ SG_ Turn_indicator_request : 17|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Emergency_brake_request : 16|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Trajectory_Counter : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ Trajectory_version : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Points_Number : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 306 Ponits_50: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 305 Ponits_49: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 304 Ponits_48: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 303 Ponits_47: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 302 Ponits_46: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 301 Ponits_45: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 300 Ponits_44: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 299 Ponits_43: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 298 Ponits_42: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 297 Ponits_41: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 296 Ponits_40: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 295 Ponits_39: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 294 Ponits_38: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 293 Ponits_37: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 292 Ponits_36: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 291 Ponits_35: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 290 Ponits_34: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 289 Ponits_33: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 288 Ponits_32: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 287 Ponits_31: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 286 Ponits_30: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 285 Ponits_29: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 284 Ponits_28: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 283 Ponits_27: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 282 Ponits_26: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 281 Ponits_25: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 280 Ponits_24: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 279 Ponits_23: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 278 Ponits_22: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 277 Ponits_21: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 276 Ponits_20: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 275 Ponits_19: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 274 Ponits_18: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 273 Ponits_17: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 272 Ponits_16: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 271 Ponits_15: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 270 Ponits_14: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 269 Ponits_13: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 268 Ponits_12: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 267 Ponits_11: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 266 Ponits_10: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 265 Ponits_9: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 264 Ponits_8: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 263 Ponits_7: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 262 Ponits_6: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 261 Ponits_5: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 260 Ponits_4: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 259 Ponits_3: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 258 Ponits_2: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_X : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 257 Ponits_1: 8 ADCU
+ SG_ Position_Y : 46|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Position_Z : 28|18@1- (0.01,0) [-1310.72|1310.71] "m" Vector__XXX
+ SG_ Orentation_Yaw : 0|16@1+ (0.01,0) [0|360] "degree" Vector__XXX
+ SG_ Speed : 16|9@1+ (0.1,0) [0|51.1] "m/s" Vector__XXX
+ SG_ Gear : 25|3@1+ (1,0) [0|7] "" Vector__XXX
+
+
+
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+VAL_ 256 Turn_indicator_request 3 "Both Turn lamp ON" 2 "Right Trun lamp ON" 1 "Left Turn lamp ON" 0 "No request" ;
+VAL_ 256 Emergency_brake_request 1 "Request Emergency Brake" 0 "No request" ;
+VAL_ 306 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 305 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 304 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 303 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 302 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 301 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 300 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 299 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 298 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 297 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 296 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 295 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 294 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 293 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 292 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 291 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 290 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 289 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 288 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 287 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 286 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 285 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 284 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 283 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 282 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 281 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 280 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 279 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 278 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 277 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 276 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 275 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 274 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 273 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 272 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 271 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 270 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 269 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 268 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 267 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 266 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 265 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 264 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 263 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 262 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 261 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 260 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 259 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 258 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+VAL_ 257 Gear 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "D" 3 "N" 2 "R" 1 "P" 0 "Invalid" ;
+

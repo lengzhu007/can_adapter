@@ -1,0 +1,253 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: EPS Gateway Motor_MLBevo ESP EML
+VAL_TABLE_ vtZAS_Kl_15 1 "on" 0 "off" ;
+VAL_TABLE_ vtMO_Gangposition 15 "fehler" 14 "undefined" 13 "Gang_R" 12 "between position" 11 "Automat_forward_D/E" 10 "Automat_forward_S" 9 "Automat_P" 8 "Gang_8" 7 "Gang_7" 6 "Gang_6" 5 "Gang_5" 4 "Gang_4" 3 "Gang_3" 2 "Gang_2" 1 "Gang_1" 0 "Gang_N" ;
+VAL_TABLE_ vtTSK_Status 7 "irreversible_out" 6 "reversible_off" 5 "brake_only_mode" 4 "trangression" 3 "active" 2 "passive" 1 "initializing" 0 "Main_switch_off" ;
+VAL_TABLE_ vtEPS_Versorgungsstatus 3 "block" 2 "under pressure" 1 "over pressure" 0 "no fault" ;
+VAL_TABLE_ vtEML_Position 1023 "Fehler" 1022 "init" ;
+VAL_TABLE_ vtOBD_Aussen_Temp_gef 255 "Fehler" 254 "Init" ;
+VAL_TABLE_ vtEML_GierRate 65535 "Fehler" 65534 "Init" ;
+VAL_TABLE_ vtEML_Beschl 2047 "Fehler" 2046 "Init" ;
+VAL_TABLE_ vtEPS_QBit_Zahnstangen_Pos 1 "error" 0 "valid" ;
+VAL_TABLE_ vtEPS_VZ_Zahnstangenposition 1 "neg_VZ
+
+" 0 "pos_VZ
+
+" ;
+VAL_TABLE_ vtEPS_Zahnstangen_Pos 4095 "Fehler" 4094 "Init" ;
+VAL_TABLE_ ESP_QBit 1 "Init or error
+
+
+
+" 0 "valid value
+
+" ;
+VAL_TABLE_ vtESP_Wegimpuls 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_TABLE_ vtESP_FR 1 "backward" 0 "forward" ;
+VAL_TABLE_ vtESP_Radgeschw 4095 "Fehler" 4094 "Init" 4093 "Unterspannung
+
+" ;
+
+
+BO_ 1793 Klemmen_Status_01: 3 Gateway
+ SG_ ZAS_Kl_15 : 17|1@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1556 Motor_14: 3 Motor_MLBevo
+ SG_ MO_Gangposition : 20|4@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1286 TSK_06: 4 Motor_MLBevo
+ SG_ TSK_Status : 24|3@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 260 EML_04: 8 EML
+ SG_ EML_PositionY : 50|14@0+ (0.001,-8) [0|16000] "m" Vector__XXX
+ SG_ EML_PositionX : 36|14@0+ (0.001,-8) [0|16000] "m" Vector__XXX
+
+BO_ 1030 OBD_02: 8 Gateway
+ SG_ OBD_Aussen_Temp_gef : 56|8@0+ (1,-40) [0|253] "C" Vector__XXX
+
+BO_ 259 EML_03: 6 EML
+ SG_ EML_GierRate : 32|16@0+ (0.0001220703125,-3.9998168945) [-0|65533] "" Vector__XXX
+ SG_ EML_BeschlX : 0|11@0+ (0.02,-20.45) [0|2045] "m/s^2" Vector__XXX
+ SG_ EML_BeschlY : 15|11@0+ (0.02,-20.45) [0|2045] "m/s^2" Vector__XXX
+
+BO_ 257 EML_01: 8 EML
+ SG_ EML_GierRate : 16|16@0+ (0.0001220703125,-3.9998168945) [-0|65533] "" Vector__XXX
+ SG_ EML_BeschlX : 0|11@0+ (0.02,-20.45) [0|2045] "m/s^2" Vector__XXX
+
+BO_ 772 LH_EPS_04: 6 EPS
+ SG_ EPS_Versorgungsstatus : 46|2@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ EPS_QBit_Zahnstangen_Pos : 45|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ EPS_VZ_Zahnstangenposition : 44|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ EPS_Zahnstangen_Pos : 32|12@0+ (0.02,0) [0|0] "mm" Vector__XXX
+
+BO_ 528 ESP_10: 7 ESP
+ SG_ ESP_Wegimpuls_VR : 26|10@0+ (1,0) [0|1000] "" Vector__XXX
+ SG_ ESP_Wegimpuls_VL : 16|10@0+ (1,0) [0|1000] "" Vector__XXX
+ SG_ ESP_Wegimpuls_HR : 46|10@0+ (1,0) [0|1000] "" Vector__XXX
+ SG_ ESP_Wegimpuls_HL : 36|10@0+ (1,0) [0|1000] "" Vector__XXX
+ SG_ ESP_QBit_Wegimpuls_VR : 13|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESP_QBit_Wegimpuls_VL : 12|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESP_QBit_Wegimpuls_HR : 15|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESP_QBit_Wegimpuls_HL : 14|1@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 515 ESP_03: 8 ESP
+ SG_ ESP_VR_Radgeschw : 28|12@0+ (0.01,0) [0|0] "km/h" Vector__XXX
+ SG_ ESP_VR_FR : 13|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESP_VL_Radgeschw : 16|12@0+ (0.01,0) [0|0] "km/h" Vector__XXX
+ SG_ ESP_VL_FR : 12|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESP_HR_Radgeschw : 52|12@0+ (0.01,0) [0|0] "km/h" Vector__XXX
+ SG_ ESP_HR_FR : 15|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ ESP_HL_Radgeschw : 40|12@0+ (0.01,0) [0|0] "km/h" Vector__XXX
+ SG_ ESP_HL_FR : 14|1@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 545 ESP_21: 6 ESP
+ SG_ ESP_v_Signal : 32|16@0+ (0.01,0) [0|65532] "km/h" Vector__XXX
+
+
+
+CM_ SG_ 1286 TSK_Status "0 = Main_switch_off
+1 = initializing
+2 = passive
+3 = active
+4 = trangression
+5 = brake_only_mode
+6 = reversible_off
+7 = irreversible_out
+";
+CM_ SG_ 772 EPS_Versorgungsstatus "Texttable 
+0x0 (raw) = kein_Fehler
+0x1 (raw) = Unterspannung
+0x2 (raw) = Ueberspannung
+0x3 (raw) = Stoerung";
+CM_ SG_ 515 ESP_VR_Radgeschw "Linear [0 .. 4092 (raw)]
+phys = +0.1*raw +0.0
+
+Texttable 
+0xFFD (raw) = Unterspannung
+0xFFE (raw) = Init
+0xFFF (raw) = Fehler
+
+Identical 
+error = 4095 (raw)
+phys = raw ";
+CM_ SG_ 515 ESP_VL_Radgeschw "Linear [0 .. 4092 (raw)]
+phys = +0.1*raw +0.0
+
+Texttable 
+0xFFD (raw) = Unterspannung
+0xFFE (raw) = Init
+0xFFF (raw) = Fehler
+
+Identical 
+error = 4095 (raw)
+phys = raw ";
+CM_ SG_ 545 ESP_v_Signal "Linear [0 .. 65532 (raw)]
+phys = +0.01*raw +0.0
+
+Texttable 
+0xFFFD (raw) = Unterspannung
+0xFFFE (raw) = Init
+0xFFFF (raw) = Fehler
+
+Identical 
+error = 65535 (raw)
+phys = raw ";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 100;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "Yes","No";
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 65535;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","not_used","not_used","IfActive","NoMsgSendType";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "No";
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_ "GenMsgCycleTime" BO_ 1793 5;
+BA_ "GenMsgILSupport" BO_ 1793 0;
+BA_ "GenMsgCycleTime" BO_ 1556 10;
+BA_ "GenMsgILSupport" BO_ 1556 0;
+BA_ "GenMsgCycleTime" BO_ 1286 20;
+BA_ "GenMsgILSupport" BO_ 1286 0;
+BA_ "GenMsgCycleTime" BO_ 260 20;
+BA_ "GenMsgILSupport" BO_ 260 0;
+BA_ "GenMsgCycleTime" BO_ 1030 320;
+BA_ "GenMsgILSupport" BO_ 1030 0;
+BA_ "GenMsgILSupport" BO_ 259 0;
+BA_ "GenMsgCycleTime" BO_ 259 20;
+BA_ "GenMsgCycleTime" BO_ 257 50;
+BA_ "GenMsgILSupport" BO_ 257 0;
+BA_ "GenMsgCycleTime" BO_ 772 10;
+BA_ "GenMsgILSupport" BO_ 772 0;
+BA_ "GenMsgCycleTime" BO_ 528 20;
+BA_ "GenMsgILSupport" BO_ 528 0;
+BA_ "GenMsgCycleTime" BO_ 515 20;
+BA_ "GenMsgILSupport" BO_ 515 0;
+BA_ "GenMsgCycleTime" BO_ 545 20;
+BA_ "GenMsgILSupport" BO_ 545 0;
+VAL_ 1793 ZAS_Kl_15 1 "on" 0 "off" ;
+VAL_ 1556 MO_Gangposition 15 "fehler" 14 "undefined" 13 "Gang_R" 12 "between position" 11 "Automat_forward_D/E" 10 "Automat_forward_S" 9 "Automat_P" 8 "Gang_8" 7 "Gang_7" 6 "Gang_6" 5 "Gang_5" 4 "Gang_4" 3 "Gang_3" 2 "Gang_2" 1 "Gang_1" 0 "Gang_N" ;
+VAL_ 1286 TSK_Status 7 "irreversible_out" 6 "reversible_off" 5 "brake_only_mode" 4 "trangression" 3 "active" 2 "passive" 1 "initializing" 0 "Main_switch_off" ;
+VAL_ 260 EML_PositionY 1023 "Fehler" 1022 "init" ;
+VAL_ 260 EML_PositionX 1023 "Fehler" 1022 "init" ;
+VAL_ 1030 OBD_Aussen_Temp_gef 255 "Fehler" 254 "Init" ;
+VAL_ 259 EML_GierRate 65535 "Fehler" 65534 "Init" ;
+VAL_ 259 EML_BeschlX 2047 "Fehler" 2046 "Init" ;
+VAL_ 259 EML_BeschlY 2047 "Fehler" 2046 "Init" ;
+VAL_ 257 EML_GierRate 65535 "Fehler" 65534 "Init" ;
+VAL_ 257 EML_BeschlX 2047 "Fehler" 2046 "Init" ;
+VAL_ 772 EPS_Versorgungsstatus 3 "block" 2 "under pressure" 1 "over pressure" 0 "no fault" ;
+VAL_ 772 EPS_QBit_Zahnstangen_Pos 1 "error" 0 "valid" ;
+VAL_ 772 EPS_VZ_Zahnstangenposition 1 "neg_VZ
+
+" 0 "pos_VZ
+
+" ;
+VAL_ 772 EPS_Zahnstangen_Pos 4095 "Fehler" 4094 "Init" ;
+VAL_ 528 ESP_Wegimpuls_VR 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 528 ESP_Wegimpuls_VL 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 528 ESP_Wegimpuls_HR 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 528 ESP_Wegimpuls_HL 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 528 ESP_QBit_Wegimpuls_VR 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 528 ESP_QBit_Wegimpuls_VL 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 528 ESP_QBit_Wegimpuls_HR 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 528 ESP_QBit_Wegimpuls_HL 1023 "Fehler" 1022 "Unterspannung" 1021 "Init" ;
+VAL_ 515 ESP_VR_Radgeschw 4095 "Fehler" 4094 "Init" 4093 "Unterspannung
+
+" ;
+VAL_ 515 ESP_VR_FR 1 "backward" 0 "forward" ;
+VAL_ 515 ESP_VL_Radgeschw 4095 "Fehler" 4094 "Init" 4093 "Unterspannung
+
+" ;
+VAL_ 515 ESP_VL_FR 1 "backward" 0 "forward" ;
+VAL_ 515 ESP_HR_Radgeschw 4095 "Fehler" 4094 "Init" 4093 "Unterspannung
+
+" ;
+VAL_ 515 ESP_HR_FR 1 "backward" 0 "forward" ;
+VAL_ 515 ESP_HL_Radgeschw 4095 "Fehler" 4094 "Init" 4093 "Unterspannung
+
+" ;
+VAL_ 515 ESP_HL_FR 1 "backward" 0 "forward" ;
+VAL_ 545 ESP_v_Signal 65535 "failure" 65534 "Initializing" 65533 "under voltage" ;
+

@@ -135,7 +135,7 @@ int spi_slave_dbus_recv_frame_multi(char *buff, int len);
 * return: 0 on success; or -1 if an error occurred
 */
 int spi_dbus_time_sync_indication(void);
-float GetTimeStamp();
+double GetTimeStamp();
 #ifdef __cplusplus
 }
 #endif

@@ -10,8 +10,8 @@
 #ifndef CAN_TRANSLATOR_H
 #define CAN_TRANSLATOR_H
 
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+// #include "ros/ros.h"
+// #include "std_msgs/String.h"
 #include <vector>
 #include <map>
 #include "stdlib.h"

@@ -1,0 +1,57 @@
+send_Orentation_Roll Orentation_Roll　＃Vehicle_3D_Odometry:
+send_Position_Z Position_Z
+send_Orentation_Pitch Orentation_Pitch
+send_Odometry_Counter Odometry_Counter
+
+send_Odometry_Counter Odometry_Counter  #2d
+send_Position_X Position_X
+send_Orentation_Yaw Orentation_Yaw
+send_Position_Y Position_Y
+
+send_Points_Number  Points_Number   #END
+send_Trajectory_version Trajectory_version 
+send_Trajectory_Counter Trajectory_Counter 
+
+send_Turn_indicator_request Turn_indicator_request  #START
+send_Emergency_brake_request  Emergency_brake_request 
+send_Trajectory_Counter Trajectory_Counter 
+send_Trajectory_version  Trajectory_version 
+send_Points_Number  Points_Number 
+
+send_Position_Y  Position_Y  #point 
+send_Position_X  Position_X
+send_Orentation_Yaw Orentation_Yaw
+send_Speed Speed
+send_Gear Gear
+
+recv_rr_speed ESP_HR_Radgeschw
+recv_rl_speed ESP_HL_Radgeschw
+recv_fr_speed ESP_VR_Radgeschw
+recv_fl_speed ESP_VL_Radgeschw
+recv_fl_pulse ESP_Wegimpuls_VL
+recv_fr_pulse ESP_Wegimpuls_VR
+recv_rl_pulse ESP_Wegimpuls_HL
+recv_rr_pulse ESP_Wegimpuls_HR
+recv_fl_direction ESP_VL_FR
+recv_fr_direction ESP_VR_FR
+recv_rl_direction ESP_HL_FR
+recv_rr_direction ESP_HR_FR
+recv_fl_pulsevalid ESP_QBit_Wegimpuls_VL
+recv_fr_pulsevalid ESP_QBit_Wegimpuls_VR
+recv_rl_pulsevalid ESP_QBit_Wegimpuls_HL
+recv_rr_pulsevalid ESP_QBit_Wegimpuls_HR
+recv_speed ESP_v_Signal 
+recv_steerangle_fl EML_LenkWnklVL
+recv_steerangle_fr EML_LenkWnklVR
+recv_gear MO_Gangposition
+recv_acceleration_x EML_BeschlX
+recv_acceleration_y EML_BeschlY
+recv_yawrate EML_GierRate
+
+
+
+
+
+
+
+

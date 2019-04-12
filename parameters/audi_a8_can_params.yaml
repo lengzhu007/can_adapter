@@ -1,3 +1,0 @@
-dbc_files: ['parameters/audi_a8/Flexray_CAN.dbc','parameters/audi_a8/trajectory_draft.dbc']
-key_files: ['parameters/audi_a8/key.map']
-unit_files: ['parameters/audi_a8/unit.map']

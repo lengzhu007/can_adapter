@@ -11,14 +11,16 @@
 #include "CANTrans.h"
 #include <unistd.h>
 #include <sys/time.h>
+#include <pthread.h>
 using namespace std;
 
 namespace can_adapter {
 
 CANTrans::CANTrans(vector<int> send_period, vector<int> recv_period) {
+	std::cout << "cantrans0000000000000"<< std::endl;
 	_send_period[0] = send_period[0], _send_period[1] = send_period[1]; 
 	_recv_period[0] = recv_period[0], _recv_period[1] = recv_period[1];
-	_send_buff[0] = new vector<CanBase>(); _send_buff[0]->reserve(8000);
+	_send_buff[0] = new vector<CanBase>(); _send_buff[0]->reserve(8000);//reserve用来（预留空间，）改变capacity，不改变size，会去分配内存，但不会构造出对象
 	_send_buff[1] = new vector<CanBase>(); _send_buff[1]->reserve(8000);
 	_new_send_buff[0] = new vector<CanBase>(); _new_send_buff[0]->reserve(8000);
 	_new_send_buff[1] = new vector<CanBase>(); _new_send_buff[1]->reserve(8000);
@@ -38,26 +40,28 @@ CANTrans::~CANTrans() {
 }
 
 bool CANTrans::start() {
+	std::cout << "045 " << std::endl;
 	if (_initialized) {
 		cout << "CANTrans: start: already initialized" << endl;
 		return false;
 	}
-	if (!init_can()) return false;
+	std::cout << "050 " << std::endl;
+	if (!init_can()) return false;//
 	_stop = false;
 	_initialized = true;
 	pthread_mutex_init(&_send_mutex[0], NULL);
 	pthread_mutex_init(&_send_mutex[1], NULL);
 	pthread_mutex_init(&_recv_mutex[0], NULL);
-	pthread_mutex_init(&_recv_mutex[1], NULL);
-	pthread_create(&_send_thread, NULL, &CANTrans::send_callback, this);
-	pthread_create(&_recv_thread, NULL, &CANTrans::recv_callback, this);
+	pthread_mutex_init(&_recv_mutex[1], NULL);//初始化互斥变量
+	pthread_create(&_send_thread, NULL, &CANTrans::send_callback, this);//创见线程　　并从CANTrans::send_callback这个函数开始执行
+	pthread_create(&_recv_thread, NULL, &CANTrans::recv_callback, this);//创见线程　　并从CANTrans::recv_callback这个函数开始执行
 	return true;
 }
 
 void CANTrans::stop() {
 	if (!_initialized) return;
 	_stop = true;
-	pthread_join(_send_thread, NULL);
+	pthread_join(_send_thread, NULL);//pthread_join()函数，以阻塞的方式等待thread指定的线程结束//本进程等待　＿send_thread的结束
 	pthread_join(_recv_thread, NULL);
 	stop_can();
 	_send_buff[0]->clear();
@@ -165,13 +169,15 @@ void* CANTrans::recv_callback(void* self_ptr) {
 		last_time = double(t1[0].tv_sec)*1000.0 + double(t1[0].tv_usec)/1000.0;
 		dt = cur_time - last_time;
 		if (canTrans->_recv_period[0] > 0 && dt > canTrans->_recv_period[0] - time_offsets[0]) {
+			//每隔（canTrans->_recv_period[0]＝20　） - 9.42)　这么长时间收一次can 报文
 			canTrans->_recv_buff[0]->clear();
-			recv_messages(*(canTrans->_recv_buff[0]), 0);
+			recv_messages(*(canTrans->_recv_buff[0]), 0);//接受spi_can_frame的消息　存入_recv_buff[0]
 			pthread_mutex_lock(&canTrans->_recv_mutex[0]);
 			if (canTrans->_new_recv_buff[0]->size() > 5000)
 				canTrans->_new_recv_buff[0]->clear();
 			canTrans->_new_recv_buff[0]->insert(canTrans->_new_recv_buff[0]->end(),
-				canTrans->_recv_buff[0]->begin(), canTrans->_recv_buff[0]->end());
+				canTrans->_recv_buff[0]->begin(), canTrans->_recv_buff[0]->end());//
+				//将　_recv_buff的数据放入　_new_recv_buff　保证所有数据都是新的
     		pthread_mutex_unlock(&canTrans->_recv_mutex[0]);
 			t1[0] = t2;
 			time_offsets[0] = dt - (canTrans->_recv_period[0] - time_offsets[0]);
@@ -182,7 +188,7 @@ void* CANTrans::recv_callback(void* self_ptr) {
 		dt = cur_time - last_time;
 		if (canTrans->_recv_period[1] > 0 && dt > canTrans->_recv_period[1] - time_offsets[1]) {
 			canTrans->_recv_buff[1]->clear();
-			recv_messages(*(canTrans->_recv_buff[1]), 1);
+			recv_messages(*(canTrans->_recv_buff[1]), 1);//接受spi_can_frame的消息　存入_recv_buff[1]
 			pthread_mutex_lock(&canTrans->_recv_mutex[1]);
 			if (canTrans->_new_recv_buff[1]->size() > 5000)
 				canTrans->_new_recv_buff[1]->clear();
@@ -192,9 +198,9 @@ void* CANTrans::recv_callback(void* self_ptr) {
 			t1[1] = t2;
 			time_offsets[1] = dt - (canTrans->_recv_period[1] - time_offsets[1]);
 		}
-		usleep(1000);
+		usleep(1000);//每隔1ms循环一次
 	}
-	pthread_exit(0);
+	pthread_exit(0);//线程通过调用pthread_exit函数终止执行
 }
 
 
